@@ -14,12 +14,11 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
+      - name: Setup Gradle Wrapper
+        run: gradle wrapper
+
       - name: Build Debug APK
-        run: |
-          mkdir -p app/src/main/java/com/mj/assistant
-          mv AndroidManifest.xml app/src/main/AndroidManifest.xml
-          mv MainActivity.kt app/src/main/java/com/mj/assistant/MainActivity.kt
-          gradle build
+        run: ./gradlew assembleDebug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
