@@ -14,15 +14,14 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle Wrapper
-        run: gradle wrapper
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
 
       - name: Build Debug APK
-        run: ./gradlew assembleDebug
+        run: gradle assembleDebug
 
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v3
         with:
           name: MJ_Assistant_APK
           path: app/build/outputs/apk/debug/*.apk
-          
